@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reterio Console | Anoimazo2 Games</title>
+  <style>
+    /* CSS VARIABLES: 
+       These make it easy to change your color scheme later. 
+       I pulled these colors directly from your console code! 
+    */
+    :root {
+      --bg-color: #1a1a1a;
+      --container-bg: #3a3f4d;
+      --accent-red: #a92323;
+      --accent-red-hover: #7e1919;
+      --text-main: #ffffff;
+      --text-muted: #a0aab2;
+      --font-stack: 'Courier New', Courier, monospace;
+    }
+
+    /* GLOBAL RESET: Removes default browser spacing */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      padding: 20px;
+      display: flex;
+      justify-content: center; /* Centers the content on large screens */
+      min-height: 100vh; 
+      height: auto;
+    }
+
+    /* MAIN WRAPPER: Keeps the page contained and readable */
+    .launch-container {
+      max-width: 800px;
+      width: 100%;
+      height: 100%;
+      background: var(--container-bg);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      overflow: auto;
+    }
+
+    /* HEADINGS */
+    h1 {
+      text-align: center;
+      color: var(--accent-red);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      border-bottom: 2px solid var(--accent-red);
+      padding-bottom: 5px;
+      margin: 30px 0 15px 0;
+      color: var(--text-main);
+    }
+
+    /* TEXT & PARAGRAPHS */
+    p {
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+
+    /* LINKS */
+    a {
+      color: var(--accent-red);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--text-main);
+    }
+
+    /* LISTS */
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 15px;
+      color: var(--text-muted);
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    /* BUTTONS & SELECT INPUTS */
+    .controls-group {
+      background: #2b2e37; /* Slightly darker background for the form area */
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    select, button {
+      font-family: var(--font-stack);
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    select {
+      background: #111;
+      color: white;
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: var(--accent-red);
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 3px 0 #5e1414;
+      transition: all 0.1s;
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #5e1414;
+      background-color: var(--accent-red-hover);
+    }
+
+    /* GRID FOR IMAGES: Automatically aligns your gallery */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery-item {
+      background: #252831;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .gallery-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 2px solid #111;
+      margin-top: 10px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #545b6e;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="launch-container">
+    
+    <header>
+      <h1>Reterio Console</h1>
+      <p style="text-align: center;">Welcome to the official launch screen for the Reterio virtual console.</p>
+    </header>
+
+    <section id="about">
+      <h2>About the Console</h2>
+      <h2>This was made by anointo by the way :)</h2>
+      <p>This is a custom-built, web-based virtual console created entirely from scratch. Designed by a solo indie developer, it simulates a retro gaming environment complete with its own logic and interface.</p>
+      <p>The system currently features an 8-button layout (D-Pad, A, B, Start, and Select). I am continuously working on the engine, and future updates will expand its capabilities.</p>
+      
+      <p><strong>Current & Upcoming Features:</strong></p>
+      <ul>
+        <li>Dual-player controller support (Version 1.1+)</li>
+        <li>Customizable console numbering</li>
+        <li>Touch screen integration (Upcoming)</li>
+        <li>Virtual input cord simulation (Upcoming)</li>
+        <li>Experimental motion controls (Upcoming)</li>
+      </ul>
+      <p>If you encounter any bugs, especially on the PC version (as this was optimized heavily for mobile), please report them on <a href="https://youtube.com/@anointingajos?si=3PdCvhMzsX_RfKrm">My YouTube Channel</a>.</p>
+    </section>
+
+    <section id="launch">
+      <h2>Launch Emulator</h2>
+      <p>Select your platform and firmware version to boot the console.</p>
+      
+      <div class="controls-group">
+        <p><strong>Device Target:</strong> <a id="mobileLink" href="console(mobile)1.0.html">Mobile</a> | <a id="pcLink" href="console(pc)1.0.html">Computer</a></p>
+        <p style="font-size: 12px; margin-top: 10px; color: #888;">press "okay" to choose the version, then press the mobile/pc link(device target) to start the console</p><br>
+        <label for="version-select"><strong>Firmware Version:</strong></label>
+        <select id="version-select">
+          <option value="1.0">v1.0 (Stable)</option>
+          <option value="1.1">v1.1 (Multiplayer Update)</option>
+        </select>
+        <button type="button" onclick="setVersion()">okay</button>
+        <p style="font-size: 12px; margin-top: 10px; color: #888;">*Note: v1.1 includes 2-player support and console numbering.</p>
+      </div>
+    </section>
+
+    <section id="games">
+      <h2>Game Library (ROMs)</h2>
+      <p>Available software for the Reterio engine. More titles will be added as development continues. Too play any of these: <br>*run the game<br>*type the game name or game number/index (as listed below)<br>*have fun! ;)</p>
+      
+      <h3>Version 1.0 Firmware</h3>
+      <ol>
+        <li><strong>astroid dogder</strong> - <a href="notAvailable.html">:(</a></li>
+      
+      
+        <li><strong>runner</strong> - <a href="notAvailable.html">:(</a></li>
+      
+      
+        <li><strong>platopia1.7</strong> - <a href="platopia1.7(manual).html">Read Manual</a></li>
+      
+      
+        <li><strong>sticker_quest</strong> - <a href="notAvailable.html">:(</a></li>
+        
+        
+        <li><strong>top_view_story_rom</strong> - <a href="notAvailable.html">:(</a></li>
+        
+        
+        <li><strong>prismvault_neon_depths_rom</strong> - <a href="notAvailable.html">:(</a></li>
+      </ol>
+      <br>
+      
+      <h3>Version 1.1 Firmware</h3>
+      <ol>
+        <li><strong>Platopia (v1.8)</strong> - <a href="manuals/platopia1.8(manual).html">Read Manual</a></li>
+        
+        <li><strong>project_zenith0.3</strong> - <a href="manuals/notAvailable.html">:(</a></li>
+      </ol>
+    </section>
+
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <p>Check out the engine in action.</p>
+      
+      <div class="image-gallery">
+        <div class="gallery-item">
+          <p>Super duper fun games!</p>
+          <img src="img4(def).jpg" alt="Game screenshot 1"> 
+        </div>
+        <div class="gallery-item">
+          <p>Interesting gameplay!</p>
+          <img src="img3(def).jpg" alt="Game screenshot 2">
+        </div>
+        <div class="gallery-item">
+          <p>Authentic retro theme!</p>
+          <img src="img2(def).jpg" alt="Game screenshot 3">
+        </div>
+        <div class="gallery-item">
+          <p>Everything you wanted!</p>
+          <img src="img1(def).jpg" alt="Game screenshot 4">
+        </div>
+      </div>
+    </section>
+
+    <footer>
+    <p>offline <a href="cool_offline_download.zip" download>download</a></p>
+      <p>Thanks for playing!</p>
+      <p>&copy; 2026 Anoimazo2 Games. All rights reserved.</p>
+      <p>Go <a href="notAvailable.html">here</a> for developer logs and more info.</p>
+    </footer>
+
+  </div>
+
+  <script>
+  const mobileLink = document.getElementById("mobileLink");
+  const pcLink = document.getElementById("pcLink");
+  let version = document.getElementById("version-select") .value;
+  function setVersion() {
+  version = document.getElementById("version-select") .value;
+  if (version === "1.0") {
+  mobileLink.href = "console(mobile)1.0.html";
+  pcLink.href = "console(pc)1.0.html";
+  } else if (version === "1.1") {
+  mobileLink.href = "console(mobile)1.1.html";
+  pcLink.href = "console(pc)1.1.html";
+  }
+  }
+  
+    // You can add your launch logic here later!
+    // E.g., Grabbing the dropdown value and redirecting to the right HTML file.
+  </script>
+</body>
+</html>

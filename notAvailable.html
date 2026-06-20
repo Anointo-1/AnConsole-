@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reterio Console | Anoimazo2 Games</title>
+  <style>
+    /* CSS VARIABLES: 
+       These make it easy to change your color scheme later. 
+       I pulled these colors directly from your console code! 
+    */
+    :root {
+      --bg-color: #1a1a1a;
+      --container-bg: #3a3f4d;
+      --accent-red: #a92323;
+      --accent-red-hover: #7e1919;
+      --text-main: #ffffff;
+      --text-muted: #a0aab2;
+      --font-stack: 'Courier New', Courier, monospace;
+    }
+
+    /* GLOBAL RESET: Removes default browser spacing */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      padding: 20px;
+      display: flex;
+      justify-content: center; /* Centers the content on large screens */
+      min-height: 100vh; 
+      height: auto;
+    }
+
+    /* MAIN WRAPPER: Keeps the page contained and readable */
+    .launch-container {
+      max-width: 800px;
+      width: 100%;
+      height: 100%;
+      background: var(--container-bg);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      overflow: auto;
+    }
+
+    /* HEADINGS */
+    h1 {
+      text-align: center;
+      color: var(--accent-red);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      border-bottom: 2px solid var(--accent-red);
+      padding-bottom: 5px;
+      margin: 30px 0 15px 0;
+      color: var(--text-main);
+    }
+
+    /* TEXT & PARAGRAPHS */
+    p {
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+
+    /* LINKS */
+    a {
+      color: var(--accent-red);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--text-main);
+    }
+
+    /* LISTS */
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 15px;
+      color: var(--text-muted);
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    /* BUTTONS & SELECT INPUTS */
+    .controls-group {
+      background: #2b2e37; /* Slightly darker background for the form area */
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    select, button {
+      font-family: var(--font-stack);
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    select {
+      background: #111;
+      color: white;
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: var(--accent-red);
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 3px 0 #5e1414;
+      transition: all 0.1s;
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #5e1414;
+      background-color: var(--accent-red-hover);
+    }
+
+    /* GRID FOR IMAGES: Automatically aligns your gallery */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery-item {
+      background: #252831;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .gallery-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 2px solid #111;
+      margin-top: 10px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #545b6e;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="launch-container">
+    
+    <header>
+      <h1>This feature isn't Available Yet! :(</h1>
+      hopefully this will be available by the next update!
+      here, you can get back! choose a link! <br><a href="index.html">CHOOSE ME!</a>, <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">don't choose me, just trust...</a>
+      <h2>Wait...</h2>
+      While you're still here in this poorly made website, can you check out my other stuff?
+      <br>Anyways Hey Edidiong :)!
+      I'm planning on making a new game! it starts with "slap"!
+      <div class="controls-group">My stuff...<br>
+<ul>
+<li>Pokémon An - <a href="https://anointo-1.github.io/Pok-mon-An-GitHub-/">CLICK ME! TRUST</a></li>
+<li>that's all... - <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">DOUBLE CLICK ME! DOUBLE TRUST</a></li>
+</ul>
+</div>
+Here's the <a href="cool_offline_download.zip" download>download</a> so you can play offline! once downloaded, extract the zip file and open the file called "index.html" with a html reader or your browser.<br>
+I'm anointo, a itsy bitsy creator making silly little projects! Wouldn't it be nice if you could... you know... show some support?<br>
+Check out my <a href="https://youtube.com/@anointingajos?si=3PdCvhMzsX_RfKrm">YouTube</a>, AND THATS AN ORDER! bye!
+  <script>
+    // You can add your launch logic here later!
+    // E.g., Grabbing the dropdown value and redirecting to the right HTML file.
+  </script>
+</body>
+</html>

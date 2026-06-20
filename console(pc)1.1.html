@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no">
+<title>PC Emulator v1.1</title>
+<style>
+body {
+  background-color: #1a1a1a;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Modern Layout Wrapper */
+.emulator-wrapper {
+  display: flex;
+  gap: 20px;
+  max-width: 1000px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* Left Side: Game Screen & Controllers */
+.main-screen-area {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Right Side: Options & Sidebar */
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.console-container {
+  background: #3a3f4d;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: inset 0 4px 0 #545b6e, 0 10px 20px rgba(0,0,0,0.5);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+canvas {
+  background: #000;
+  width: 100%;
+  aspect-ratio: 5 / 5;
+  border: 4px solid #252831;
+  border-radius: 5px;
+  display: block;
+}
+
+.fps-counter {
+  text-align: right;
+  font-size: 12px;
+  color: #a0aab2;
+  margin-top: 5px;
+}
+
+/* Controller Shell */
+.controller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2b2e37;
+  padding: 20px 10px;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.player-label {
+  position: absolute;
+  font-size: 10px;
+  color: #888;
+  margin-top: -15px;
+}
+
+/* D-PAD Style */
+.dpad { position: relative; width: 90px; height: 90px; }
+.dpad-btn { position: absolute; background: #111; color: #555; border: none; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 0 #000; cursor: pointer; }
+.dpad-btn:active { background: #000; transform: translateY(1px); box-shadow: 0 1px 0 #000; }
+.dpad-btn.up { top: 0; left: 30px; width: 30px; height: 32px; border-radius: 5px 5px 0 0; }
+.dpad-btn.down { bottom: 0; left: 30px; width: 30px; height: 32px; border-radius: 0 0 5px 5px; }
+.dpad-btn.left { top: 30px; left: 0; width: 32px; height: 30px; border-radius: 5px 0 0 5px; }
+.dpad-btn.right { top: 30px; right: 0; width: 32px; height: 30px; border-radius: 0 5px 5px 0; }
+.dpad-center { position: absolute; top: 30px; left: 30px; width: 30px; height: 30px; background: #111; }
+
+/* Center Menu Buttons */
+.center-buttons { display: flex; gap: 10px; transform: translateY(15px); }
+.menu-btn-container { display: flex; flex-direction: column; align-items: center; font-size: 8px; color: #888; font-weight: bold; }
+.menu-btn { width: 30px; height: 8px; background: #555; border: none; border-radius: 4px; transform: rotate(-25deg); box-shadow: 0 2px 0 #000; margin-bottom: 8px; cursor: pointer; }
+.menu-btn:active { background: #333; box-shadow: 0 0px 0 #000; }
+
+/* Action Buttons (A / B) */
+.action-buttons { display: flex; gap: 12px; transform: rotate(-15deg); }
+.action-btn-container { display: flex; flex-direction: column; align-items: center; }
+.action-btn { width: 35px; height: 35px; background: #a92323; color: white; border: none; border-radius: 50%; font-weight: bold; font-size: 14px; box-shadow: 0 3px 0 #5e1414; cursor: pointer; }
+.action-btn:active { background: #7e1919; box-shadow: 0 1px 0 #5e1414; transform: translateY(2px); }
+
+/* Sidebar Inputs & Buttons */
+.sidebar h3 { margin-top: 0; border-bottom: 2px solid #545b6e; padding-bottom: 5px; font-size: 14px; color: #cbd5e1;}
+.sidebar button { background: #4a5060; color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-family: inherit; margin-bottom: 5px; width: 100%; text-align: left; transition: background 0.2s;}
+.sidebar button:hover { background: #5a6070; }
+.sidebar input[type="text"], .sidebar input[type="number"] { background: #222; border: 1px solid #555; color: white; padding: 6px; width: calc(100% - 14px); margin-bottom: 5px; border-radius: 3px; font-family: inherit; }
+.sidebar input[type="range"] { width: 100%; margin-bottom: 10px; }
+.sidebar input[type="color"] { background: none; border: none; cursor: pointer; height: 25px; vertical-align: middle; }
+.control-group { margin-bottom: 15px; }
+
+/* PC Keyboard Legend */
+.pc-legend { background: #2b2e37; padding: 10px; border-radius: 8px; font-size: 11px; color: #a0aab2; margin-top: 10px;}
+.pc-legend h4 { margin: 0 0 5px 0; color: #fff; }
+.pc-legend table { width: 100%; }
+.pc-legend td { padding: 2px 0; }
+.pc-legend td:nth-child(2) { text-align: right; color: #cbd5e1; font-weight: bold; }
+
+/* Utilities */
+.flex-row { display: flex; gap: 5px; }
+.flex-row button { width: auto; flex: 1; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="emulator-wrapper">
+  
+  <div class="main-screen-area">
+    <div class="console-container" id="conDis">
+      <div style="display: flex; justify-content: space-between;">
+        <span style="color: #888; font-size: 12px;">v1.1</span>
+        <div class="fps-counter">FPS: <span id="fps">0</span></div>
+      </div>
+      <canvas width="500px" height="500px"></canvas>
+    </div>
+
+    <div class="console-container" id="bCase" style="padding: 10px;">
+      <div class="controller">
+        <span class="player-label">PLAYER 1</span>
+        <div class="dpad">
+          <button id="btn-up" class="dpad-btn up">▲</button>
+          <button id="btn-left" class="dpad-btn left">◀</button>
+          <div class="dpad-center"></div>
+          <button id="btn-right" class="dpad-btn right">▶</button>
+          <button id="btn-down" class="dpad-btn down">▼</button>
+        </div>
+        <div class="center-buttons">
+          <div class="menu-btn-container"><button id="btn-select" class="menu-btn"></button><label>SELECT</label></div>
+          <div class="menu-btn-container"><button id="btn-start" class="menu-btn"></button><label>START</label></div>
+        </div>
+        <div class="action-buttons">
+          <div class="action-btn-container"><button id="btn-b" class="action-btn b-btn">B</button></div>
+          <div class="action-btn-container"><button id="btn-a" class="action-btn a-btn">A</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="console-container" id="conDisp2" style="padding: 10px; display: none;">
+      <div class="controller" id="bCasep2">
+        <span class="player-label">PLAYER 2</span>
+        <div class="dpad">
+          <button id="btn-up2" class="dpad-btn up">▲</button>
+          <button id="btn-left2" class="dpad-btn left">◀</button>
+          <div class="dpad-center"></div>
+          <button id="btn-right2" class="dpad-btn right">▶</button>
+          <button id="btn-down2" class="dpad-btn down">▼</button>
+        </div>
+        <div class="center-buttons">
+          <div class="menu-btn-container"><button id="btn-select2" class="menu-btn"></button><label>SELECT</label></div>
+          <div class="menu-btn-container"><button id="btn-start2" class="menu-btn"></button><label>START</label></div>
+        </div>
+        <div class="action-buttons">
+          <div class="action-btn-container"><button id="btn-b2" class="action-btn b-btn">B</button></div>
+          <div class="action-btn-container"><button id="btn-a2" class="action-btn a-btn">A</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="console-container" id="conDis2">
+      <h3>System Controls</h3>
+      <div class="control-group">
+        <input id="romName" type="text" placeholder="Type ROM name..." value="platopia1.8">
+        <button onclick="play()" style="background: #2ea043; text-align: center;">▶ Load & Play</button>
+      </div>
+      
+      <div class="control-group">
+        <button onclick="toggleFullScreen()" style="text-align: center;">⛶ Toggle Fullscreen</button>
+      </div>
+
+      <h3>Display Settings</h3>
+      <div class="control-group">
+        <label style="font-size: 12px; color: #cbd5e1;">Screen Blur</label>
+        <div class="flex-row">
+          <input id="blur" type="range" value="50">
+          <button onclick="aBlur()">Apply</button>
+        </div>
+      </div>
+      <div class="control-group">
+        <label style="font-size: 12px; color: #cbd5e1;">Aspect Ratio</label>
+        <div class="flex-row">
+          <input id="aspect" type="text" placeholder="e.g 64/64" value="64/64">
+          <button onclick="addA()">Set</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="console-container" id="opDis">
+      <h3>Emulator Options</h3>
+      <div class="control-group flex-row">
+        <span style="flex: 2; font-size: 12px; align-self: center;">Player 1 Input:</span>
+        <button id="firConSb" onclick="firConS()">ON</button>
+      </div>
+      <div class="control-group flex-row">
+        <span style="flex: 2; font-size: 12px; align-self: center;">Player 2 Input:</span>
+        <button id="secConSb" onclick="secConS()" style="background: #333;">OFF</button>
+      </div>
+      
+      <div class="control-group flex-row">
+        <input id="consNumIn" type="number" placeholder="ID">
+        <button onclick="addCN()">Set Console #</button>
+      </div>
+
+      <div class="control-group flex-row">
+        <span style="flex: 2; font-size: 12px; align-self: center;">Shell Color:</span>
+        <input id="boxColor" type="color">
+        <button onclick="chBC()">Apply</button>
+      </div>
+      <div class="control-group flex-row">
+        <span style="flex: 2; font-size: 12px; align-self: center;">Button Panel:</span>
+        <input id="butCaseColor" type="color">
+        <button onclick="chBTCC()">Apply</button>
+      </div>
+
+      <div class="pc-legend">
+        <h4>Keyboard Mapping</h4>
+        <table>
+          <tr><td><strong>D-PAD 1:</strong></td><td>WASD / Arrows</td></tr>
+          <tr><td><strong>A / B (P1):</strong></td><td>Z / X</td></tr>
+          <tr><td><strong>Start / Sel:</strong></td><td>Enter / Shift</td></tr>
+          <tr><td colspan="2"><hr style="border-color: #444; margin: 4px 0;"></td></tr>
+          <tr><td><strong>D-PAD 2:</strong></td><td>I J K L</td></tr>
+          <tr><td><strong>A / B (P2):</strong></td><td>O / P</td></tr>
+          <tr><td><strong>Start / Sel:</strong></td><td>1 / 2</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="script(pc)1.1.js"></script>
+</body>
+</html>

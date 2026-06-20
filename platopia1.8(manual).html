@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platopia - Official Instruction Booklet</title>
+<style>
+    /* Paper Aesthetic & Classic Nintendo Colors */
+    body {
+        background-color: #f4eade; /* Aged paper color */
+        background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, #e0d5c1 20px);
+        color: #111;
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh; 
+        height: auto;
+    }
+
+    .manual-container {
+        max-width: 800px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.4);
+        border: 2px solid #a92323;
+        padding: 15px;
+        box-shadow: inset 0 0 50px rgba(139, 115, 85, 0.3), 5px 5px 15px rgba(0,0,0,0.5);
+        overflow: auto;
+    }    
+
+    /* Chunky, Cluttered Headings */
+    h1 {
+        text-align: center;
+        color: #a92323;
+        font-family: 'Arial Black', Impact, sans-serif;
+        text-transform: uppercase;
+        font-size: 3em;
+        margin: 0;
+        border-bottom: 5px solid #111;
+        letter-spacing: -2px;
+    }
+
+    h2 {
+        background-color: #a323;
+        color: #fff;
+        font-family: 'Arial Black', sans-serif;
+        padding: 5px 10px;
+        margin-top: 20px;
+        text-transform: uppercase;
+        border: 3px solid #111;
+        box-shadow: 3px 3px 0 #111;
+    }
+
+    h3 {
+        color: #a92323;
+        font-family: Arial, sans-serif;
+        border-bottom: 2px dashed #a92323;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.2;
+        margin-bottom: 10px;
+        text-align: justify;
+    }
+
+    /* Image Placeholders */
+    .screenshot {
+        background-color: #3a3f4d;
+        border: 3px inset #888;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 12px;
+        text-align: center;
+        margin: 10px auto;
+        box-shadow: 5px 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .screenshot.large { height: 200px; width: 80%; }
+    .screenshot.small { height: 100px; width: 45%; display: inline-flex; margin: 5px 2%; }
+
+    /* Cluttered Layout Tricks */
+    .two-column {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .column {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .warning-box {
+        background-color: #ffd700;
+        border: 3px solid #111;
+        padding: 10px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        transform: rotate(-1deg);
+        box-shadow: 4px 4px 0 #a92323;
+        margin: 15px 0;
+    }
+
+    ul { padding-left: 20px; margin-top: 5px; font-size: 14px; }
+    li { margin-bottom: 5px; }
+
+    /* The "Top Secret" Section */
+    .secret-section {
+        background: #111;
+        color: #0f0;
+        border: 4px solid #f00;
+        padding: 15px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .secret-section h2 { background: #f00; color: #111; }
+</style>
+</head>
+<body>
+
+<div class="manual-container">
+    <h2>Go back to home<a href="index.html">←</a></h2>
+    <h1>PLATOPIA</h1>
+    <div class="warning-box">pure choas!!!</div>
+    <p style="text-align: center; font-weight: bold;">OFFICIAL INSTRUCTION BOOKLET - ANOINTO LOGIC SYSTEMS[cite: 7]</p>
+     
+        <img class="screenshot large"src="img1(platopia1.7).jpg">
+    <h1>super players</h1>
+    <div class="two-column">
+        <div class="column">
+            <h2>Getting Started</h2>
+            <p>Welcome to the world of PLATOPIA, running on the incredible Anointo Logic Systems Scroller Engine v10.0[cite: 7]! You are about to embark on a thrilling adventure across multiple dangerous biomes. You'll need sharp reflexes and a keen eye to survive the perilous jumps, outsmart the Hunters, and collect the legendary Orbs!</p>
+            
+            <h3>Controller Input</h3>
+            <ul>
+                <li><strong>D-PAD (Left/Right):</strong> Move your hero across the terrain[cite: 5].</li>
+                <li><strong>A BUTTON:</strong> Jump! Master this to survive[cite: 5, 7].</li>
+                <li><strong>B BUTTON:</strong> Dash into action to take out enemies[cite: 5, 7].</li>
+                <li><strong>START / SELECT:</strong> Pause the game or access the Pause Option menu[cite: 5, 7].</li>
+            </ul>
+        </div>
+        
+        <div class="column">
+            <h2>Hazards & Items</h2>
+            <!-- [ ITEM: ORB ] -->
+            <img class="screenshot small" src="img2(platopia1.7).jpg">
+            <!-- [ ITEM: SPRING ] -->
+            <img class="screenshot small" src="img3(platopia1.7).jpg">
+            <p>Keep your eyes peeled for these crucial items scattered throughout the worlds:</p>
+            <ul>
+                <li><strong>Orbs:</strong> Collect these glowing spheres to increase your score and progression[cite: 7]. Grabbing one creates a burst of blue sparks![cite: 7]</li>
+                <li><strong>Springs:</strong> Step on these yellow bouncy pads to get an incredible height boost[cite: 7]. Perfect for reaching those high-up Orbs![cite: 7]</li>
+            </ul>
+            <div class="warning-box">
+                WARNING! Avoid the Lava/Ash Hazards in World 3! They erupt upwards and will instantly cost you a life![cite: 7]
+            </div>
+        </div>
+    </div>
+
+    <h2>The Worlds of Platopia</h2>
+    <p>Your journey will take you across four distinct and dangerous zones. Make sure you reach the goal area at the far right of the map to survive![cite: 7]</p>
+    
+    <div class="two-column">
+        <div class="column">
+            <h3>World 1: The Starry Night</h3>
+            <p>A gentle introduction. Jump across basic platforms under a beautiful starry sky and watch out for the simple patrolling ground enemies[cite: 7].</p>
+            
+            <h3>World 2: Industrial Pipes</h3>
+            <p>The challenge ramps up! Navigate across metallic platforms and look out for enemies flying in wave-like patterns[cite: 7].</p>
+            <!-- [ LEVEL 2 SCREENSHOT ] -->
+            <img class="screenshot small" src="img4(platopia1.7).jpg">
+            <p><strong>PRO TIP:</strong> There is a Secret Key hidden at the very edge of this map (Coordinates X: 1020, Y: 32)[cite: 7]. Grabbing it unleashes pink sparks and sets the "Secret Unlocked Flag"[cite: 7]!</p>
+        </div>
+
+        <div class="column">
+            <h3>World 3: Ash & Lava</h3>
+            <p>Things are heating up! This world introduces Slopes and Sturdy Blocks[cite: 7]. You'll also encounter the terrifying "Hunter" enemies here—if they see you, they will get alerted and chase you down![cite: 7]</p>
+
+            <h3>World 4: Sky City Cyber Theme</h3>
+            <p>The ultimate test of platforming skill. You must navigate sticky horizontal moving platforms, slidable vertical challenges, and fragile crumbling bridges that break if you stand on them too long![cite: 7]</p>
+            <!-- [ LEVEL 4 SCREENSHOT ] -->
+            <img class="screenshot small" src="img5(platopia1.7).jpg">
+        </div>
+    </div>
+    <h2>Double players</H2>
+    <div class="two-column">
+    <h3>Don't want to play alone?</h3>
+    <p>Then use <strong>2 player mode</strong> and play with a buddy! Just press select on the title screen! feel the total chaos(In a good way) with local multiplayer!</p>
+    <img class="screenshot large"src="img1(platopia1.8).jpg">
+    <p>Just activate the second controller and play with a friend!</p>
+    </div>
+
+    <div class="secret-section">
+        <h2>TOP SECRET: EYES ONLY</h2>
+        <p>Stuck on a tough level? The developers left a secret backdoor in the engine![cite: 7]</p>
+        <p><strong>THE ULTIMATE CHEAT CODE:</strong><br>
+        On the Title Screen, input this exact sequence using your controller:</p>
+        <h3 style="text-align:center; color:#fff;">A, B, UP, RIGHT, DOWN, LEFT, SELECT, START[cite: 5, 7]</h3>
+        <p>If you enter it correctly, you will hear a special chime and instantly unlock the <strong>Armor Flag</strong>, giving you invincibility, and instantly warping you to the Map Selector![cite: 7]</p>
+        <p><strong>THE S-LEVEL:</strong><br>
+        If you have unlocked the Secret Key from World 2, press UP on the Map Selector to access the legendary Special Level (S-Level)![cite: 7]</p>
+    </div>
+
+</div>
+<script>
+</script>
+</body>
+</html>

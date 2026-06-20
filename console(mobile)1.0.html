@@ -1,0 +1,220 @@
+<!doctype html>
+ <html>
+  <head>
+  <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no">
+   <title></title>
+   <style>
+   body {
+  background-color: #1a1a1a;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 10px;
+  user-select: none; /* Prevents long-press popups on mobile */
+  -webkit-user-select: none;
+}
+
+.console-container {
+  background: #3a3f4d;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: inset 0 4px 0 #545b6e, 0 10px 20px rgba(0,0,0,0.5);
+  max-width: 400px;
+  width: 100%;
+}
+
+canvas {
+  background: #000;
+  width: 100%;
+  aspect-ratio: 5 / 5; /*Keeps your VRAM layout proportions tight */
+  border: 4px solid #252831;
+  border-radius: 5px;
+  display: block;
+}
+
+.fps-counter {
+  text-align: center;
+  font-size: 12px;
+  color: #a0aab2;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+/* Controller Shell */
+.controller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2b2e37;
+  padding: 20px 10px;
+  border-radius: 15px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* D-PAD Style */
+.dpad {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.dpad-btn {
+  position: absolute;
+  background: #111;
+  color: #555;
+  border: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 0 #000;
+  cursor: pointer;
+}
+
+.dpad-btn:active {
+  background: #000;
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 #000;
+}
+
+.dpad-btn.up { top: 0; left: 30px; width: 30px; height: 32px; border-radius: 5px 5px 0 0; }
+.dpad-btn.down { bottom: 0; left: 30px; width: 30px; height: 32px; border-radius: 0 0 5px 5px; }
+.dpad-btn.left { top: 30px; left: 0; width: 32px; height: 30px; border-radius: 5px 0 0 5px; }
+.dpad-btn.right { top: 30px; right: 0; width: 32px; height: 30px; border-radius: 0 5px 5px 0; }
+.dpad-center { position: absolute; top: 30px; left: 30px; width: 30px; height: 30px; background: #111; }
+
+/* Center Menu Buttons */
+.center-buttons {
+  display: flex;
+  gap: 10px;
+  transform: translateY(15px);
+}
+
+.menu-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 8px;
+  color: #888;
+  font-weight: bold;
+}
+
+.menu-btn {
+  width: 30px;
+  height: 8px;
+  background: #555;
+  border: none;
+  border-radius: 4px;
+  transform: rotate(-25deg);
+  box-shadow: 0 2px 0 #000;
+  margin-bottom: 8px;
+}
+
+.menu-btn:active {
+  background: #333;
+  box-shadow: 0 0px 0 #000;
+}
+
+/* Action Buttons (A / B) */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  transform: rotate(-15deg);
+}
+
+.action-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action-btn {
+  width: 35px;
+  height: 35px;
+  background: #a52323;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 3px 0 #5e1414;
+  cursor: pointer;
+}
+
+.action-btn:active {
+  background: #7e1919;
+  box-shadow: 0 1px 0 #5e5414;
+  transform: translateY(9px);
+}
+   </style>
+  </head>
+  <body>
+ <div class="console-container" id="conDis">
+  <canvas width="500px" height="500px"></canvas>
+  <div class="fps-counter">FPS: <span id="fps">0</span></div>
+
+  <div class="controller" id="bCase">
+    
+    <div class="dpad">
+      <button id="btn-up" class="dpad-btn up">▲</button>
+      <button id="btn-left" class="dpad-btn left">◀</button>
+      <div class="dpad-center"></div>
+      <button id="btn-right" class="dpad-btn right">▶</button>
+      <button id="btn-down" class="dpad-btn down">▼</button>
+    </div>
+
+    <div class="center-buttons">
+      <div class="menu-btn-container">
+        <button id="btn-select" class="menu-btn"></button>
+        <label>SELECT</label>
+      </div>
+      <div class="menu-btn-container">
+        <button id="btn-start" class="menu-btn"></button>
+        <label>START</label>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <div class="action-btn-container">
+        <button id="btn-b" class="action-btn b-btn">B</button>
+      </div>
+      <div class="action-btn-container">
+        <button id="btn-a" class="action-btn a-btn">A</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="console-container" id="conDisp2">
+  </div>
+</div>
+
+<!--##########-->
+<!--##########-->
+<!-- options -->
+<!--##########-->
+<!--##########-->
+
+<div class="console-container" id="conDis2">
+<input id="romName" type="text" placeholder="type rom name..." value="astroid dogder"><button onclick="play()">play</button><br>
+<input id="blur" type="range" value="50"><button onclick="aBlur()">add blur</button><br>
+<input id="aspect" type="text" placeholder="type aspect ratio e.g 64/64..." value="64/64"><button onclick="addA()">add aspect</button><br>
+<button onclick="option()">options</button>
+</div>
+
+<div class="console-container" id="opDis">
+<button class="action-btn" onclick="back()">x</button>
+<h3 style="display: inline">options:</h3><br>
+first controller:<button id="firConSb" onclick="firConS()">on</button><br><br>
+box colour palette:<input id="boxColor" type="color"><button onclick="chBC()">ok</button><br><br>
+button case colour palette:<input id="butCaseColor" type="color"><button onclick="chBTCC()">ok</button><br><br>
+</div>
+   <script src="script(mobile)1.0.js"></script>
+  </body>
+ </html>
